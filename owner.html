@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kathana Calculator · Owner Analytics Control</title>
+<style>
+:root{--bg:#090d18;--panel:#11182a;--line:#28334e;--text:#f6f1e5;--muted:#9da9bf;--gold:#d9b45f;--green:#7fc6a2}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(#080c16,#0c1220);color:var(--text);font:15px/1.45 Inter,system-ui,Segoe UI,Arial,sans-serif}
+.card{width:min(560px,calc(100% - 28px));background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}
+h1{margin:0 0 8px;font-size:1.6rem}.muted{color:var(--muted)}
+.status{margin:18px 0;padding:14px;border:1px solid var(--line);border-radius:12px;background:#0d1423}
+.status strong{color:var(--green)}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+button,a{font:inherit;border-radius:10px;padding:10px 13px}
+button{cursor:pointer;border:1px solid var(--gold);background:var(--gold);color:#17120a;font-weight:800}
+button.secondary{background:#182138;color:var(--text);border-color:var(--line)}
+a{display:inline-block;color:var(--gold)}
+code{background:#0a1020;padding:2px 5px;border-radius:5px}
+</style>
+</head>
+<body>
+<main class="card">
+<h1>Owner Analytics Control</h1>
+<p class="muted">Use this page on each browser/device you use to test the Kathana Taney Calculator. Exclusion is stored only in that browser.</p>
+<div class="status">This browser: <strong id="state">checking…</strong></div>
+<div class="actions">
+<button id="exclude">Exclude this browser</button>
+<button class="secondary" id="include">Count this browser again</button>
+</div>
+<p class="muted">After excluding this browser, normal visits to the calculator will not load the analytics tracker. Clearing browser site data/local storage will remove the exclusion.</p>
+<p><a href="./">← Back to Kathana Taney Calculator</a></p>
+</main>
+<script>
+const KEY='kathana.analytics.ownerOptOut';
+const state=document.getElementById('state');
+function render(){state.textContent=localStorage.getItem(KEY)==='1'?'EXCLUDED — your visits will not count':'TRACKED — visits will count'}
+document.getElementById('exclude').onclick=()=>{localStorage.setItem(KEY,'1');render()};
+document.getElementById('include').onclick=()=>{localStorage.removeItem(KEY);render()};
+render();
+</script>
+</body>
+</html>
