@@ -174,3 +174,144 @@ button:focus-visible, a:focus-visible {outline:2px solid var(--gold-pale);outlin
  .stat small{font-size:.67rem}
 }
 @media(prefers-reduced-motion:reduce) {html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+
+
+/* OCT 2026 — BAHAMUT / Reign of Shadows landing treatment.
+   Styled in tribute to playkathana.com; independent fan community project. */
+:root {
+  --bg:#0c0b0a; --panel:#181615; --panel2:#201a16; --line:#5a4633;
+  --text:#f5eee4; --muted:#aea399; --gold:#dbb67b; --gold-pale:#f5d69c;
+  --green:#e8c180; --crimson:#7b2922; --crimson-bright:#ae4537;
+}
+body {
+  background:
+    radial-gradient(ellipse 90% 22% at 50% 5%, rgba(158,69,35,.18), transparent 80%),
+    radial-gradient(ellipse 55% 25% at 70% 60%, rgba(111,52,28,.065), transparent),
+    linear-gradient(#0e0d0d,#0c0b0a);
+  font-family:"Manrope","Segoe UI",Arial,sans-serif;
+}
+.site-topbar {position:sticky;top:0;z-index:50;min-height:68px;
+ background:rgba(12,11,11,.93);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+ border-bottom:1px solid rgba(219,182,123,.25);
+ box-shadow:0 4px 26px rgba(0,0,0,.48)}
+.site-topbar-brand{font-family:"Cinzel",Georgia,serif;letter-spacing:.18em;font-size:1.12rem}
+.site-topbar-brand::before{font-size:1.4rem}
+.topnav a{font-size:.73rem}
+.topnav a.official{background:linear-gradient(90deg,rgba(168,74,43,.14),rgba(219,182,123,.1));border:1px solid rgba(219,182,123,.46);color:#f3d49b}
+.topnav a.official:hover{background:rgba(219,182,123,.2)}
+.battle-banner {
+ position:relative;isolation:isolate;overflow:hidden;width:100%;
+ min-height:360px;height:min(39.5vw,565px);
+ background:#100c0b;display:flex;align-items:stretch;
+ border-bottom:1px solid rgba(245,214,156,.5);
+ box-shadow:inset 0 -40px 60px rgba(0,0,0,.4),0 20px 50px rgba(0,0,0,.45)
+}
+.battle-banner__image{position:absolute;inset:0}
+.battle-banner__image img{width:100%;height:100%;object-fit:cover;object-position:50% 44%;display:block}
+.battle-banner__shade{
+ position:absolute;inset:0;pointer-events:none;
+ background:
+  linear-gradient(0deg,rgba(7,6,6,.93) 0,rgba(7,6,6,.40) 13%,transparent 42%),
+  linear-gradient(90deg,rgba(11,7,7,.13),transparent 42%,rgba(18,8,4,.08))
+}
+.battle-banner__rim{position:absolute;pointer-events:none;inset:14px 16px 32px;
+ border:1px solid rgba(238,197,132,.2);z-index:1;
+ box-shadow:inset 0 0 0 2px rgba(0,0,0,.1)}
+.battle-banner__rim::before,.battle-banner__rim::after {
+ content:"◆";font-size:14px;position:absolute;color:rgba(239,205,150,.72);
+ background:#1f140f;text-shadow:0 1px 9px rgba(240,193,96,.5);line-height:1
+}
+.battle-banner__rim::before{top:-7px;left:-7px}
+.battle-banner__rim::after{top:-7px;right:-7px}
+.battle-banner__bottom{
+ position:relative;z-index:2;align-self:flex-end;display:flex;justify-content:space-between;
+ align-items:flex-end;gap:20px;width:min(1180px,calc(100% - 64px));margin:0 auto 33px;
+}
+.battle-banner__identity{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.battle-banner__eyebrow{font-size:.71rem;font-weight:800;letter-spacing:.27em;color:#f0ce91;text-shadow:0 2px 8px black}
+.battle-banner__tagline{color:#ddc5a7;font-size:.83rem;text-shadow:0 2px 8px black}
+.battle-banner__mobile-name{display:none}
+.battle-banner__cta{font:800 .74rem "Manrope",sans-serif;text-decoration:none;letter-spacing:.14em;
+ color:#fce4b4;border:1px solid rgba(249,207,142,.72);
+ background:linear-gradient(180deg,rgba(109,52,28,.9),rgba(41,22,15,.97));
+ padding:15px 23px;white-space:nowrap;transition:background .2s,transform .2s}
+.battle-banner__cta:hover{background:#925133;transform:translateY(-2px);color:white}
+.battle-banner__cta span{font-size:1.1rem;margin-left:15px;color:#f0c778}
+.battle-banner__cta:focus-visible{outline:2px solid white;outline-offset:3px}
+.wrap{padding-top:34px}
+.brand{gap:14px;padding-bottom:16px;border-bottom-color:rgba(219,182,123,.22)}
+.brand .logo{width:55px;height:55px;font-size:1.65rem;box-shadow:inset 0 0 0 5px #17100e,inset 0 0 0 6px rgba(217,179,110,.5),0 0 20px rgba(219,182,123,.16)}
+.brand h1{letter-spacing:.13em}
+.brand p{font-size:.80rem}
+.brand__edition{margin-left:auto;flex:none;align-self:center;
+ padding:7px 12px;border:1px solid rgba(219,182,123,.32);color:var(--gold-pale);
+ background:rgba(219,182,123,.055);font-size:.61rem;font-weight:800;letter-spacing:.13em}
+.ornament{font-size:.73rem;letter-spacing:.19em;opacity:.82}
+.hero>.card:first-child{padding:40px 39px;
+ background:linear-gradient(128deg,rgba(71,38,27,.56),rgba(28,23,20,.96) 44%,rgba(17,15,14,.99))}
+.card{border-radius:7px;background:linear-gradient(160deg,#201b18,#121111 66%);border-color:rgba(216,177,117,.25)}
+.card::before{border-radius:4px}
+.hero h2{font-size:clamp(2.25rem,4vw,3.75rem);line-height:1.13}
+.hero h2 span{color:#f3d39c}
+.lede{max-width:620px;color:#d3c7b8}
+.stats{background:linear-gradient(160deg,#181311,#100f0e)}
+.stat{background:linear-gradient(125deg,rgba(78,49,28,.33),rgba(24,20,19,.95));border-left-color:#c69b5c}
+.stat b{color:#f5d69c}
+.head h3,.card h3{color:#f2e6d2;font-weight:700}
+.head .note{max-width:390px;text-align:right}
+.section.card{padding:33px 31px}
+.two.section>.card{padding:31px 29px}
+.eyebrow{font-size:.67rem;letter-spacing:.20em}
+table{background:#110f0e}
+th{background:#292018;color:#e4cbab}
+tbody tr:nth-child(even):not(.best){background:rgba(253,229,186,.025)}
+tbody tr:hover{background:rgba(235,185,105,.09)}
+.best{background:linear-gradient(90deg,rgba(186,122,50,.20),rgba(219,182,123,.045))}
+select,input{background:#100e0d;border-color:#5c4938}
+select:focus,input:focus{border-color:#dbb67b}
+.result{background:linear-gradient(120deg,#37251a,#201815)}
+.big{font-size:clamp(1.9rem,4vw,2.7rem)}
+button{border-color:rgba(219,182,123,.4)}
+.support{border-radius:6px;background:linear-gradient(104deg,rgba(114,48,27,.33),rgba(28,24,22,.98) 60%)}
+.support-link{background:linear-gradient(180deg,#e5c187,#b48a4b)}
+.footer{margin-top:37px;font-size:.76rem}
+#calculator,#packs,#rupiah,#world,#support{scroll-margin-top:86px}
+@media (max-width:950px) {
+ .battle-banner{height:43vw;min-height:315px}
+ .battle-banner__bottom{width:calc(100% - 44px);margin-bottom:22px}
+ .brand__edition{display:none}
+ .head .note{text-align:left}
+}
+@media(max-width:680px){
+ .site-topbar{min-height:55px}
+ .site-topbar-brand{font-size:1rem}
+ .battle-banner{height:auto;min-height:0;aspect-ratio:1.36;display:block}
+ .battle-banner__image img{object-position:50% 50%}
+ .battle-banner__shade{background:linear-gradient(0deg,#090808 0%,rgba(11,8,8,.83) 13%,transparent 48%)}
+ .battle-banner__rim{inset:10px 10px 14px}
+ .battle-banner__bottom{position:absolute;inset:auto 0 0;align-items:flex-end;width:auto;padding:18px 20px 16px;margin:0;gap:10px}
+ .battle-banner__eyebrow{font-size:.50rem;letter-spacing:.13em}
+ .battle-banner__mobile-name{display:block;color:#f3d299;font:700 1.37rem/1.1 "Cinzel",Georgia,serif;text-shadow:0 3px 8px black}
+ .battle-banner__tagline{font-size:.62rem}
+ .battle-banner__cta{font-size:.56rem;letter-spacing:.02em;white-space:normal;padding:9px 11px;max-width:138px;text-align:center}
+ .battle-banner__cta span{margin-left:4px}
+ .wrap{padding-top:26px}
+ .brand h1{font-size:1rem}
+ .brand p{font-size:.66rem}
+ .brand .logo{height:45px;width:45px;font-size:1.25rem}
+ .ornament{font-size:.54rem;letter-spacing:.1em}
+ .hero>.card:first-child{padding:27px 21px}
+ .hero h2{font-size:clamp(2rem,9vw,3.1rem)}
+ .section.card,.two.section>.card{padding:22px 18px}
+ .head .note{text-align:left}
+ .stats{padding:12px}
+ .stat{padding:17px}
+ .big{font-size:1.95rem}
+ #calculator,#packs,#rupiah,#world,#support{scroll-margin-top:105px}
+}
+@media(max-width:390px){
+ .topnav a{font-size:.61rem;padding:6px 7px}
+ .battle-banner{aspect-ratio:1.24}
+ .battle-banner__bottom{padding:15px 16px}
+ .battle-banner__cta{max-width:112px}
+}
