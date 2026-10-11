@@ -285,7 +285,7 @@ button{border-color:rgba(219,182,123,.4)}
 @media(max-width:680px){
  .site-topbar{min-height:55px}
  .site-topbar-brand{font-size:1rem}
- .battle-banner{height:auto;min-height:0;aspect-ratio:1.36;display:block}
+ .battle-banner{height:auto;min-height:0;aspect-ratio:1.7;display:block}
  .battle-banner__image img{object-position:50% 50%}
  .battle-banner__shade{background:linear-gradient(0deg,#090808 0%,rgba(11,8,8,.83) 13%,transparent 48%)}
  .battle-banner__rim{inset:10px 10px 14px}
@@ -311,7 +311,7 @@ button{border-color:rgba(219,182,123,.4)}
 }
 @media(max-width:390px){
  .topnav a{font-size:.61rem;padding:6px 7px}
- .battle-banner{aspect-ratio:1.24}
+ .battle-banner{aspect-ratio:1.65}
  .battle-banner__bottom{padding:15px 16px}
  .battle-banner__cta{max-width:112px}
 }
