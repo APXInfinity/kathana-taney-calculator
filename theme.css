@@ -315,3 +315,115 @@ button{border-color:rgba(219,182,123,.4)}
  .battle-banner__bottom{padding:15px 16px}
  .battle-banner__cta{max-width:112px}
 }
+
+/* Layout correction: full-bleed illustrated header, fluid content and proper desktop scale */
+.site-topbar {
+  padding-inline: max(24px, calc((100vw - 1360px) / 2));
+}
+.wrap {
+  width: min(1360px, calc(100% - 48px));
+  padding-top: 40px;
+}
+.battle-banner {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 36vw, 600px);
+  min-height: 0;
+  display: block;
+  background: #130d0a;
+  overflow: hidden;
+  isolation: isolate;
+}
+.battle-banner::before {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: -28px;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(8,6,5,.55) 0%, rgba(8,6,5,.12) 50%, rgba(8,6,5,.48) 100%),
+    url("assets/bahamut-banner.jpg") center 48% / cover no-repeat;
+  filter: blur(16px) brightness(.65);
+  transform: scale(1.05);
+}
+.battle-banner::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(0deg, rgba(8,6,5,.95), transparent 24%),
+    linear-gradient(90deg, rgba(10,7,6,.44) 0%, transparent 25%, transparent 73%, rgba(10,7,6,.44) 100%);
+}
+.battle-banner__image {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  right: auto;
+  width: min(1420px, 100%);
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+.battle-banner__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.battle-banner__shade { z-index: 1; }
+.battle-banner__rim {
+  left: max(20px, calc((100vw - 1390px) / 2));
+  right: max(20px, calc((100vw - 1390px) / 2));
+  top: 18px;
+  bottom: 28px;
+  z-index: 1;
+}
+.battle-banner__bottom {
+  position: absolute;
+  bottom: 27px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  width: min(1280px, calc(100% - 88px));
+  z-index: 3;
+}
+.battle-banner__eyebrow, .battle-banner__tagline { text-shadow: 0 2px 12px #000, 0 0 18px #000; }
+.hero {
+  grid-template-columns: minmax(0, 1.6fr) minmax(315px, .85fr);
+}
+.card { min-width: 0; }
+.section.card, .two.section > .card { min-width:0; }
+table {width:100%;min-width:650px;border-collapse:collapse;}
+.tablewrap { width:100%; }
+th, td { text-align: right; }
+th:first-child, td:first-child { text-align:left; }
+.brand__edition { white-space:nowrap; }
+.ornament { margin-bottom: 28px; }
+@media(max-width: 950px) {
+  .site-topbar { padding-inline: 20px; }
+  .wrap { width: min(100% - 32px, 860px); }
+  .hero { grid-template-columns: 1fr; }
+  .battle-banner { height: clamp(320px, 48vw, 470px); }
+  .battle-banner__bottom { width: calc(100% - 56px); bottom: 22px; }
+}
+@media(max-width: 680px) {
+  .site-topbar { padding: 12px 16px; }
+  .wrap { width: calc(100% - 24px); padding-top: 24px; }
+  .battle-banner { height:auto; min-height: 0; aspect-ratio: 1.65; }
+  .battle-banner__image { width:100%;height:100%; }
+  .battle-banner__image img { object-fit:cover; object-position: 66% center; }
+  .battle-banner::before { filter: blur(11px) brightness(.6); }
+  .battle-banner::after { background:linear-gradient(0deg, rgba(8,6,5,.93), transparent 57%); }
+  .battle-banner__rim { inset: 10px 10px 14px; }
+  .battle-banner__bottom {
+    left: 0; bottom: 0; transform:none;
+    width:100%; padding:18px 20px 16px; margin:0;
+  }
+  .hero { grid-template-columns:1fr; }
+  .ornament { margin-bottom: 19px; }
+  .tablewrap {overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
