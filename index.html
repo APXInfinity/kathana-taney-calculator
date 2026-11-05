@@ -11,11 +11,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="theme.css?v=20261011-layoutfix-2">
+<link rel="stylesheet" href="theme.css?v=20261105-market">
 <script src="analytics.js"></script>
 </head>
 <body>
-<header class="site-topbar"><a class="site-topbar-brand" href="#home">KATHANA <span class="fansite">FAN UTILITY</span></a><nav class="topnav" aria-label="Site sections"><a href="#packs">Taney Packs</a><a href="#rupiah">Rupiah</a><a href="#world">Currencies</a><a href="#support">Support</a><a class="official" href="https://playkathana.com/" target="_blank" rel="noopener noreferrer">Official game ↗</a></nav></header>
+<header class="site-topbar"><a class="site-topbar-brand" href="#home">KATHANA <span class="fansite">FAN UTILITY</span></a><nav class="topnav" aria-label="Site sections"><a href="#packs">Taney Packs</a><a href="#market">Player Prices</a><a href="#rupiah">Rupiah</a><a href="#world">Currencies</a><a href="#support">Support</a><a class="official" href="https://playkathana.com/" target="_blank" rel="noopener noreferrer">Official game ↗</a></nav></header>
 <section class="battle-banner" aria-label="BAHAMUT character banner">
   <div class="battle-banner__image">
     <img src="assets/bahamut-banner.jpg?v=20261011-layoutfix-2" width="1200" height="675" fetchpriority="high" alt="BAHAMUT, Kathana character in ornate armor wielding an enormous golden weapon in a fiery fantasy temple." />
@@ -35,17 +35,123 @@
 <div class="brand"><div class="logo" aria-hidden="true">✧</div><div><h1>KATHANA TANEY CALCULATOR</h1><p>Fan-made tools for Taney, Rupiah, and worldwide currency estimates</p></div><span class="brand__edition">BAHAMUT EDITION · UNOFFICIAL</span></div>
 <div class="ornament" aria-hidden="true">✦ &nbsp; THE ADVENTURER’S EXCHANGE &nbsp; ✦</div>
 <section class="hero" id="calculator">
-<div class="card"><div class="eyebrow">ADVENTURER'S LEDGER / GLOBAL EXCHANGE</div><h2>Know the value of <span>your Taney.</span></h2><p class="lede">Compare Taney packs and estimate the local-currency value of Kathana's in-game Rupiah voucher using the same exchange rate.</p><div class="controls"><div><label>Display currency</label><select id="currency"></select></div><div><label>Manual USD rate override</label><input id="manual" inputmode="decimal" placeholder="Use live rate"></div></div><div class="status" id="status" style="margin-top:9px">Loading live FX…</div></div>
-<div class="card stats"><div class="stat"><small>BEST PACK · 4,000 TANEY</small><b id="unit">—</b><small>per Taney</small></div><div class="stat"><small>1M IN-GAME RUPIAH</small><b id="oneM">—</b><small>37 Taney equivalent</small></div><div class="stat"><small>5M VOUCHER</small><b id="fiveM">—</b><small>185 Taney</small></div></div>
+<div class="card"><div class="eyebrow">ADVENTURER'S LEDGER / GLOBAL EXCHANGE</div><h2>Know the value of <span>your Taney.</span></h2><p class="lede">Compare Taney packs and estimate in-game Rupiah costs using the latest prices you find in player trading listings.</p><div class="controls"><div><label>Display currency</label><select id="currency"></select></div><div><label>Manual USD rate override</label><input id="manual" inputmode="decimal" placeholder="Use live rate"></div></div><div class="status" id="status" style="margin-top:9px">Loading live FX…</div></div>
+<div class="card stats"><div class="stat"><small>BEST PACK · 4,000 TANEY</small><b id="unit">—</b><small>per Taney</small></div><div class="stat"><small>1M IN-GAME RUPIAH</small><b id="oneM">—</b><small>Best saved price per 1M</small></div><div class="stat"><small>5M PLAYER BUNDLE</small><b id="fiveM">—</b><small>Current saved asking price</small></div></div>
 </section>
 <section class="card section" id="packs"><div class="head"><div><div class="eyebrow">01 / THE TANEY STORE</div><h3>Taney packs</h3></div><div class="note">Official pack prices · estimated local-currency conversions</div></div><div class="tablewrap"><table><thead><tr><th>Taney</th><th>USD</th><th>Local price</th><th>Per Taney</th></tr></thead><tbody id="packRows"></tbody></table></div><p class="note">Actual checkout totals can vary due to fees, taxes, regional pricing, or your bank/card conversion rate.</p></section>
+
+<section class="card section" id="market">
+<div class="head"><div><div class="eyebrow">02 / MARKET INTELLIGENCE</div><h3>Player-listed Rupiah prices</h3></div><div class="note">Update the asking price in Taney for each available Rupiah bundle.</div></div>
+<p class="note">Enter current prices you see other players listing in-game. The old 185 Taney / 5M assumption is <strong>no longer used</strong>. No live prices are assumed. Your saved prices stay in this browser; they are not shared with other users.</p>
+<form id="marketForm"><div class="price-grid">
+<div><label for="market5">5M Rupiah · Taney</label><input type="number" id="market5" min="1" max="1000000" step="1" inputmode="numeric" placeholder="Not entered"></div>
+<div><label for="market10">10M Rupiah · Taney</label><input type="number" id="market10" min="1" max="1000000" step="1" inputmode="numeric" placeholder="Not entered"></div>
+<div><label for="market20">20M Rupiah · Taney</label><input type="number" id="market20" min="1" max="1000000" step="1" inputmode="numeric" placeholder="Not entered"></div>
+<div><label for="market50">50M Rupiah · Taney</label><input type="number" id="market50" min="1" max="1000000" step="1" inputmode="numeric" placeholder="Not entered"></div>
+</div><div class="market-actions"><button class="primary" type="submit">Save current prices</button><button id="resetMarket" type="button">Clear prices</button><span id="marketStatus" class="note" role="status" aria-live="polite"></span></div></form>
+<div class="tablewrap"><table><thead><tr><th>Rupiah bundle</th><th>Listed Taney price</th><th>Taney / 1M</th><th>Value versus other bundles</th></tr></thead><tbody id="marketRows"></tbody></table></div>
+<p class="note">Enter only the bundles with confirmed player asking prices. Blank bundles are excluded. The calculator finds the cheapest exact combination of the available bundle sizes instead of multiplying a single 5M price.</p>
+</section>
 <section class="two section">
-<div class="card" id="rupiah"><div class="eyebrow">02 / THE RUPIAH LEDGER</div><h3>Rupiah calculator</h3><p class="note">5M in-game Rupiah = 185 Taney · 1M = 37 Taney.</p><div class="two"><div><label>Rupiah amount (millions)</label><input id="millions" type="number" min="0" step="0.1" value="5"></div><div><label>Use pack price</label><select id="packSel"></select></div></div><div class="result"><div class="big" id="rupiahCost">—</div><div class="note" id="detail"></div></div><div class="quick"><button data-r="1">1M</button><button data-r="5">5M</button><button data-r="10">10M</button><button data-r="50">50M</button><button data-r="100">100M</button></div><p class="note">Only the 5M voucher at 185 Taney is treated as the confirmed in-game listing; other values are proportional estimates.</p></div>
-<div class="card" id="world"><div class="eyebrow">03 / ACROSS THE REALMS</div><h3>Compare currencies</h3><p class="note">Uses the 4,000 Taney pack as the benchmark.</p><div class="worldbar"><select id="worldSel"></select><button class="primary" id="add">Add currency</button></div><div class="tablewrap"><table><thead><tr><th>Currency</th><th>1 USD</th><th>1 Taney</th><th>1M Rupiah</th><th></th></tr></thead><tbody id="currencyRows"></tbody></table></div></div>
+<div class="card" id="rupiah"><div class="eyebrow">03 / THE RUPIAH LEDGER</div><h3>Rupiah calculator</h3><p class="note">Uses your saved 5M, 10M, 20M and 50M player prices, not a fixed rate.</p><div class="two"><div><label for="millions">Rupiah amount (millions)</label><input id="millions" type="number" min="5" max="10000" step="5" value="5"></div><div><label for="packSel">Use Taney pack price</label><select id="packSel"></select></div></div><div class="result"><div class="big" id="rupiahCost">—</div><div class="note" id="detail"></div></div><div class="quick"><button data-r="5">5M</button><button data-r="10">10M</button><button data-r="20">20M</button><button data-r="50">50M</button><button data-r="100">100M</button></div><p class="note">Only exact multiples of 5M can be priced from these bundles. Calculations are estimates; verify listings before trading.</p></div>
+<div class="card" id="world"><div class="eyebrow">04 / ACROSS THE REALMS</div><h3>Compare currencies</h3><p class="note">Uses the 4,000 Taney pack. The 1M column is a normalized benchmark based on the best saved bundle rate, not a purchasable 1M listing.</p><div class="worldbar"><select id="worldSel"></select><button class="primary" id="add">Add currency</button></div><div class="tablewrap"><table><thead><tr><th>Currency</th><th>1 USD</th><th>1 Taney</th><th>1M Rupiah*</th><th></th></tr></thead><tbody id="currencyRows"></tbody></table></div></div>
 </section>
 <section class="support" id="support" aria-label="Support the project"><div><strong>Found this useful? Support the project ☕</strong><span>If this calculator helps you, you can support future updates and other community tools.</span></div><a class="support-link" data-goatcounter-click="support-kofi" href="https://ko-fi.com/apxsolutions" target="_blank" rel="noopener noreferrer">Support on Ko-fi ☕</a></section>
 <footer class="footer"><span class="disclaimer"><strong>Unofficial community tool.</strong> Not affiliated with or endorsed by Kathana Online or its publisher.</span><span>“Rupiah” here means Kathana in-game currency; IDR means Indonesian rupiah.</span><span>FX: open.er-api.com reference rates · manual override available. &nbsp; <a href="https://playkathana.com/" target="_blank" rel="noopener noreferrer">Official Kathana website ↗</a></span></footer>
 </main>
 <script>
-const packs=[{t:420,u:9.99},{t:860,u:19.99},{t:1750,u:39.99},{t:2640,u:59.99},{t:4000,u:89.99}],fallback={USD:1,PHP:62.571,IDR:17942,BRL:5.212,CNY:6.7001,KRW:1354.91,AED:3.6725};let rates={...fallback},selected='PHP',world=['PHP','IDR','BRL','CNY','KRW','AED'];const $=s=>document.querySelector(s),E={c:$('#currency'),m:$('#manual'),status:$('#status'),unit:$('#unit'),oneM:$('#oneM'),fiveM:$('#fiveM'),packs:$('#packRows'),millions:$('#millions'),packSel:$('#packSel'),rupiahCost:$('#rupiahCost'),detail:$('#detail'),worldSel:$('#worldSel'),world:$('#currencyRows'),add:$('#add')};function name(c){try{return new Intl.DisplayNames(['en'],{type:'currency'}).of(c)||c}catch{return c}}function rate(){const n=Number(E.m.value);return n>0?n:(rates[selected]||1)}function money(v,c=selected,d=2){try{return new Intl.NumberFormat('en-US',{style:'currency',currency:c,currencyDisplay:'narrowSymbol',minimumFractionDigits:d,maximumFractionDigits:d}).format(v)}catch{return c+' '+v.toFixed(d)}}function rtxt(v){return v>=1000?v.toLocaleString('en-US',{maximumFractionDigits:2}):v.toFixed(4)}function fill(){const codes=Object.keys(rates).sort(),h=codes.map(c=>`<option value="${c}">${c} — ${name(c)}</option>`).join('');E.c.innerHTML=h;E.worldSel.innerHTML=h;E.c.value=rates[selected]?selected:'USD'}function render(){const r=rate(),best=packs[4],u=best.u/best.t;E.unit.textContent=money(u*r,selected,3);E.oneM.textContent=money(u*37*r);E.fiveM.textContent=money(u*185*r);E.packs.innerHTML=packs.map((p,i)=>`<tr class="${i===4?'best':''}"><td>${p.t.toLocaleString()}</td><td>$${p.u.toFixed(2)}</td><td>${money(p.u*r)}</td><td>${money((p.u/p.t)*r,selected,3)}</td></tr>`).join('');renderR();renderW()}function renderR(){let m=Number(E.millions.value);if(!Number.isFinite(m)||m<0)m=0;const p=packs[Number(E.packSel.value)],tan=m*37,cost=tan*(p.u/p.t)*rate();E.rupiahCost.textContent=money(cost);E.detail.textContent=`${tan.toLocaleString(undefined,{maximumFractionDigits:1})} Taney equivalent · using ${p.t.toLocaleString()} pack unit price`}function renderW(){const u=packs[4].u/packs[4].t;E.world.innerHTML=world.filter(c=>rates[c]).map(c=>{const r=c===selected?rate():rates[c];return `<tr><td>${c} · ${name(c)}</td><td>${rtxt(r)}</td><td>${money(u*r,c,3)}</td><td>${money(u*37*r,c)}</td><td><button data-x="${c}">×</button></td></tr>`}).join('')}E.packSel.innerHTML=[...packs].reverse().map((p,j)=>`<option value="${4-j}">${p.t.toLocaleString()} Taney${p.t===4000?' · best rate':''}</option>`).join('');E.packSel.value='4';E.c.addEventListener('change',()=>{selected=E.c.value;E.m.value='';render()});E.m.addEventListener('input',render);E.millions.addEventListener('input',renderR);E.packSel.addEventListener('change',renderR);document.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{E.millions.value=b.dataset.r;renderR()}));E.add.addEventListener('click',()=>{const c=E.worldSel.value;if(c&&!world.includes(c)){world.push(c);renderW()}});E.world.addEventListener('click',e=>{const c=e.target.dataset.x;if(c){world=world.filter(x=>x!==c);renderW()}});fill();render();(async()=>{try{const res=await fetch('https://open.er-api.com/v6/latest/USD',{cache:'no-store'});if(!res.ok)throw 0;const d=await res.json();if(!d.rates)throw 0;rates={USD:1,...d.rates};fill();selected=rates.PHP?'PHP':'USD';E.c.value=selected;E.status.textContent='Live FX loaded · '+(d.time_last_update_utc?new Date(d.time_last_update_utc).toISOString().slice(0,10):'latest');render()}catch{E.status.textContent='Live FX unavailable · using fallback reference rates';}})();
+
+'use strict';
+const packs=[{t:420,u:9.99},{t:860,u:19.99},{t:1750,u:39.99},{t:2640,u:59.99},{t:4000,u:89.99}];
+const denominations=[5,10,20,50],storageKey='kathana.rupiahMarketRates.v1';
+const fallback={USD:1,PHP:62.571,IDR:17942,BRL:5.212,CNY:6.7001,KRW:1354.91,AED:3.6725};
+let rates={...fallback},selected='PHP',world=['PHP','IDR','BRL','CNY','KRW','AED'];
+const $=id=>document.getElementById(id);
+const E={c:$('currency'),m:$('manual'),status:$('status'),unit:$('unit'),oneM:$('oneM'),fiveM:$('fiveM'),
+ packs:$('packRows'),millions:$('millions'),packSel:$('packSel'),rupiahCost:$('rupiahCost'),detail:$('detail'),
+ worldSel:$('worldSel'),world:$('currencyRows'),add:$('add'),form:$('marketForm'),marketRows:$('marketRows'),
+ marketStatus:$('marketStatus'),reset:$('resetMarket')};
+function validPrice(x){const n=Number(x);return x!==''&&Number.isSafeInteger(n)&&n>=1&&n<=1000000?n:null}
+function readMarket(){try{
+ const raw=JSON.parse(localStorage.getItem(storageKey)||'{}'),out={};
+ for(const d of denominations){const p=validPrice(raw[d]);if(p!==null)out[d]=p}
+ return out;
+}catch{return {}}}
+let market=readMarket();
+function saveMarket(){try{localStorage.setItem(storageKey,JSON.stringify(market));return true}catch{return false}}
+function currencyName(c){try{return new Intl.DisplayNames(['en'],{type:'currency'}).of(c)||c}catch{return c}}
+function rate(){const n=Number(E.m.value);return E.m.value.trim()!==''&&n>0?n:(rates[selected]||1)}
+function money(v,c=selected,d=2){try{return new Intl.NumberFormat('en-US',{style:'currency',currency:c,currencyDisplay:'narrowSymbol',minimumFractionDigits:d,maximumFractionDigits:d}).format(v)}catch{return c+' '+v.toFixed(d)}}
+function fmt(v){return v.toLocaleString('en-US',{maximumFractionDigits:2})}
+function rtxt(v){return v>=1000?fmt(v):v.toFixed(4)}
+function marketUnit(){const values=denominations.filter(d=>market[d]).map(d=>market[d]/d);return values.length?Math.min(...values):null}
+function optimalMix(m){
+ if(!Number.isSafeInteger(m)||m<5||m>10000||m%5)return null;
+ const units=m/5,dp=Array(units+1).fill(Infinity),prev=Array(units+1).fill(null);dp[0]=0;
+ for(let i=1;i<=units;i++)for(const d of denominations){
+  const s=d/5;if(market[d]&&i>=s&&dp[i-s]+market[d]<dp[i]){dp[i]=dp[i-s]+market[d];prev[i]=d}
+ }
+ if(!Number.isFinite(dp[units]))return null;
+ const counts={};for(let i=units;i>0;){const d=prev[i];if(!d)return null;counts[d]=(counts[d]||0)+1;i-=d/5}
+ return {taney:dp[units],counts};
+}
+function fill(){const options=Object.keys(rates).sort().map(c=>'<option value="'+c+'">'+c+' — '+currencyName(c)+'</option>').join('');
+ E.c.innerHTML=options;E.worldSel.innerHTML=options;E.c.value=rates[selected]?selected:'USD'}
+function showMarket(){
+ for(const d of denominations) $('market'+d).value=market[d]||'';
+ const unit=marketUnit();
+ E.marketRows.innerHTML=denominations.map(d=>'<tr><td>'+d+'M</td><td>'+(market[d]?fmt(market[d])+' Taney':'Not entered')+'</td><td>'+(market[d]?fmt(market[d]/d):'—')+'</td><td>'+(market[d]&&unit!==null?(market[d]/d<=unit+1e-9?'Best rate':fmt((market[d]/d/unit-1)*100)+'% above best'):'—')+'</td></tr>').join('');
+}
+function renderR(){
+ const m=Number(E.millions.value),p=packs[Number(E.packSel.value)],mix=optimalMix(m);
+ if(!Number.isSafeInteger(m)||m<5||m>10000||m%5){E.rupiahCost.textContent='—';E.detail.textContent='Choose a multiple of 5M from 5M to 10,000M.';return}
+ if(!mix){E.rupiahCost.textContent='—';E.detail.textContent='No exact combination yet. Enter available player listing prices above.';return}
+ const parts=Object.entries(mix.counts).sort((a,b)=>Number(b[0])-Number(a[0])).map(([d,n])=>n+' × '+d+'M').join(' + ');
+ E.rupiahCost.textContent=money(mix.taney*p.u/p.t*rate());
+ E.detail.textContent=fmt(mix.taney)+' Taney · '+parts+' · using '+fmt(p.t)+' Taney pack price';
+}
+function renderW(){
+ const per=marketUnit(),u=packs[4].u/packs[4].t;
+ E.world.innerHTML=world.filter(c=>rates[c]).map(c=>{const r=c===selected?rate():rates[c];
+  return '<tr><td>'+c+' · '+currencyName(c)+'</td><td>'+rtxt(r)+'</td><td>'+money(u*r,c,3)+'</td><td>'+(per===null?'—':money(u*per*r,c))+'</td><td><button data-x="'+c+'">×</button></td></tr>'
+ }).join('');
+}
+function render(){
+ const r=rate(),u=packs[4].u/packs[4].t,per=marketUnit();
+ E.unit.textContent=money(u*r,selected,3);
+ E.oneM.textContent=per===null?'—':money(u*per*r);
+ E.fiveM.textContent=market[5]?money(u*market[5]*r):'—';
+ E.packs.innerHTML=packs.map((p,i)=>'<tr class="'+(i===4?'best':'')+'"><td>'+fmt(p.t)+'</td><td>$'+p.u.toFixed(2)+'</td><td>'+money(p.u*r)+'</td><td>'+money(p.u/p.t*r,selected,3)+'</td></tr>').join('');
+ showMarket();renderR();renderW();
+}
+E.packSel.innerHTML=[...packs].reverse().map((p,j)=>'<option value="'+(4-j)+'">'+fmt(p.t)+' Taney'+(p.t===4000?' · best rate':'')+'</option>').join('');
+E.packSel.value='4';
+E.c.addEventListener('change',()=>{selected=E.c.value;E.m.value='';render()});
+E.m.addEventListener('input',render);
+E.millions.addEventListener('input',renderR);
+E.packSel.addEventListener('change',renderR);
+document.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{E.millions.value=b.dataset.r;renderR()}));
+E.add.addEventListener('click',()=>{const c=E.worldSel.value;if(c&&!world.includes(c)){world.push(c);renderW()}});
+E.world.addEventListener('click',e=>{const c=e.target.dataset.x;if(c){world=world.filter(x=>x!==c);renderW()}});
+E.form.addEventListener('submit',e=>{
+ e.preventDefault();
+ const next={};for(const d of denominations){
+  const raw=$('market'+d).value.trim();
+  if(raw!==''){const p=validPrice(raw);if(p===null){E.marketStatus.textContent='Prices must be whole Taney amounts between 1 and 1,000,000.';return}next[d]=p}
+ }
+ market=next;E.marketStatus.textContent=saveMarket()?'Prices saved in this browser.':'Prices updated for this session; browser storage unavailable.';render();
+});
+E.reset.addEventListener('click',()=>{
+ if(!confirm('Clear all your saved Rupiah prices in this browser?'))return;
+ market={};saveMarket();E.marketStatus.textContent='Saved market prices cleared.';render();
+});
+fill();render();
+(async()=>{try{
+ const res=await fetch('https://open.er-api.com/v6/latest/USD',{cache:'no-store'});if(!res.ok)throw Error('Network error');
+ const d=await res.json();if(!d.rates)throw Error('Invalid FX data');
+ rates={USD:1,...d.rates};fill();
+ E.status.textContent='Live FX loaded · '+(d.time_last_update_utc?new Date(d.time_last_update_utc).toISOString().slice(0,10):'latest');
+ render();
+}catch{E.status.textContent='Live FX unavailable · using fallback reference rates'}})();
+
 </script></body></html>

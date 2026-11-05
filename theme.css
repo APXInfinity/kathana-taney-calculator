@@ -427,3 +427,20 @@ th:first-child, td:first-child { text-align:left; }
   .ornament { margin-bottom: 19px; }
   .tablewrap {overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
+
+
+/* Player market: browser-saved Rupiah bundle asking prices. */
+#market {scroll-margin-top:86px}
+#market .note strong {color:var(--gold-pale)}
+.price-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:18px 0 12px}
+.price-grid >div {min-width:0}
+.price-grid input {width:100%;font-variant-numeric:tabular-nums}
+.market-actions {display:flex;align-items:center;flex-wrap:wrap;gap:11px;margin:0 0 22px}
+.market-actions button {min-height:43px}
+.market-actions .note {flex:1;min-width:180px}
+#market .tablewrap {margin-bottom:14px}
+#market table {min-width:580px}
+#market th,#market td {padding:12px 15px}
+#market th:first-child,#market td:first-child {font-weight:700;color:var(--gold-pale)}
+@media(max-width:950px){.price-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.price-grid{grid-template-columns:1fr 1fr;gap:10px}.price-grid label{font-size:.67rem}.market-actions button{flex:1}.market-actions .note{flex-basis:100%}#market{scroll-margin-top:106px}}
