@@ -11,7 +11,7 @@
   const $ = (sel) => document.querySelector(sel);
   const status = $("#metricsStatus");
   const like = $("#likeWidget");
-  const download = $("#downloadWidget");
+  const downloadLinks = [...document.querySelectorAll("a[data-kathana-download]")];
   const slug = page;
   function info(s) { if (status) status.textContent=s; }
   function put(s,n) { const el=$(s); if (el) el.textContent=Number.isSafeInteger(n)&&n>=0?n.toLocaleString("en-US"):"—"; }
@@ -69,15 +69,15 @@
       catch{info("Unable to save your thumbs-up. Try again later.");like.disabled=false;}
     });
   }
-  if(download && slug==="event-mini"){
+  if(downloadLinks.length){
     // A valid configured backend counts the CLICK then redirects to an immutable fixed ZIP.
     // A temporarily offline backend could block the link; keep direct fallback on modifier-click.
-    download.addEventListener("click",(ev)=>{
+    downloadLinks.forEach(download=>download.addEventListener("click",(ev)=>{
       if(ev.defaultPrevented||ev.ctrlKey||ev.metaKey||ev.shiftKey||ev.altKey)return;
       const actual=download.href;
       download.href=base+"/download?page=event-mini&visitor="+encodeURIComponent(visitor);
       setTimeout(()=>{download.href=actual;},700);
-    });
+    }));
   }
   start();
 })();
