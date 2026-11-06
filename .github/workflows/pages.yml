@@ -23,6 +23,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Verify and expose Event Mini ZIP as browser preview
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path, PurePosixPath
+          from hashlib import sha256
+          from zipfile import ZipFile
+          archive=Path("event-mini/downloads/Kathana-Event-Mini-v0.8.zip")
+          expected="8c46c8d763c5fa495dd1abdb9bacd9e2921510b8049cbed50aca7939cf4b3f02"
+          if sha256(archive.read_bytes()).hexdigest()!=expected:
+              raise SystemExit("Kathana release archive checksum mismatch: abort deploy")
+          dest=Path("event-mini/app")
+          dest.mkdir(parents=True,exist_ok=True)
+          prefix="Kathana-Event-Mini-v0.8/"
+          with ZipFile(archive) as z:
+              if z.testzip():raise SystemExit("ZIP CRC failure")
+              for entry in z.infolist():
+                  if entry.is_dir():continue
+                  name=entry.filename
+                  if not name.startswith(prefix):raise SystemExit("Unexpected archive prefix")
+                  part=PurePosixPath(name[len(prefix):])
+                  if len(part.parts)!=1 or part.name in (".",".."):
+                      raise SystemExit("Unexpected nested archive file")
+                  if not part.name or part.name.startswith("."):
+                      raise SystemExit("Unexpected hidden file")
+                  (dest/part.name).write_bytes(z.read(entry))
+          print("Event Mini preview verified:",len(list(dest.iterdir())),"files")
+          PY
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
