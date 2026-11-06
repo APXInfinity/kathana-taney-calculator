@@ -1,0 +1,11 @@
+name = "kathana-fan-metrics"
+main = "counter-backend/worker.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://apxinfinity.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "kathana-metrics"
+database_id = "REPLACE_WITH_YOUR_REAL_D1_DATABASE_ID"
