@@ -13,9 +13,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme.css?v=20261105-market">
 <script src="analytics.js"></script>
+<script src="site-metrics-config.js" defer></script>
+<script src="site-metrics.js" defer></script>
 </head>
-<body>
-<header class="site-topbar"><a class="site-topbar-brand" href="#home">KATHANA <span class="fansite">FAN UTILITY</span></a><nav class="topnav" aria-label="Site sections"><a href="#packs">Taney Packs</a><a href="#market">Player Prices</a><a href="#rupiah">Rupiah</a><a href="#world">Currencies</a><a href="#support">Support</a><a class="official" href="https://playkathana.com/" target="_blank" rel="noopener noreferrer">Official game ↗</a></nav></header>
+<body data-metric-page="home">
+<header class="site-topbar"><a class="site-topbar-brand" href="#home">KATHANA <span class="fansite">FAN UTILITY</span></a><nav class="topnav" aria-label="Site sections"><a href="#packs">Taney Packs</a><a href="#market">Player Prices</a><a href="#rupiah">Rupiah</a><a href="#world">Currencies</a><a href="event-mini/index.html">Auto Events</a><a href="#support">Support</a><a class="official" href="https://playkathana.com/" target="_blank" rel="noopener noreferrer">Official game ↗</a></nav></header>
 <section class="battle-banner" aria-label="BAHAMUT character banner">
   <div class="battle-banner__image">
     <img src="assets/bahamut-banner.jpg?v=20261011-layoutfix-2" width="1200" height="675" fetchpriority="high" alt="BAHAMUT, Kathana character in ornate armor wielding an enormous golden weapon in a fiery fantasy temple." />
@@ -34,6 +36,28 @@
 <main class="wrap" id="home">
 <div class="brand"><div class="logo" aria-hidden="true">✧</div><div><h1>KATHANA TANEY CALCULATOR</h1><p>Fan-made tools for Taney, Rupiah, and worldwide currency estimates</p></div><span class="brand__edition">BAHAMUT EDITION · UNOFFICIAL</span></div>
 <div class="ornament" aria-hidden="true">✦ &nbsp; THE ADVENTURER’S EXCHANGE &nbsp; ✦</div>
+<section class="event-mini-promo card section" id="event-mini" aria-label="Kathana Event Mini widget">
+<div class="eyebrow">NEW FAN UTILITY / FREE WINDOWS WIDGET</div>
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:8px">
+<div style="flex:1;min-width:230px">
+<h3 style="margin:0 0 9px;font-size:1.4rem">Kathana Event Mini <span style="color:var(--gold)">v0.8</span></h3>
+<p class="note">A tiny Winamp-style PH + server UTC−3 clock with upcoming auto events, a live countdown and <strong>35 customizable skins</strong>. Mini 248px / Regular 312px, offline in Edge on Windows. Last window size is remembered.</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
+<a class="support-link" href="event-mini/index.html" style="min-height:39px">Open Widget Page ↗</a>
+<a class="support-link" href="event-mini/downloads/Kathana-Event-Mini-v0.8.zip" style="min-height:39px;background:#27344f;color:#fff;border-color:#536583" download>⬇ Download ZIP</a>
+</div></div>
+<div style="flex:0 1 250px;border:1px solid #3d4a66;background:#090f20;padding:14px 16px;border-radius:10px;color:#dedbe5">
+<div style="color:#90e2c7;font:700 .78rem Consolas,monospace">PH +8 &nbsp; • &nbsp; SERVER −3</div>
+<div style="font:700 1.25rem Consolas,monospace;color:#d7fcb5;margin-top:9px">AUTO EVENT CLOCK</div>
+<div style="font-size:.78rem;color:#aebfd1">NEXT · COUNTDOWN · SKINS</div>
+</div></div>
+<div style="display:flex;gap:13px;align-items:center;flex-wrap:wrap;border-top:1px solid #313e55;margin-top:16px;padding-top:10px;font-size:.82rem;color:#b3c2d2">
+<span>🏠 Page visits: <strong data-metric-views>—</strong></span>
+<span>👍 Likes: <strong data-metric-likes>—</strong></span>
+<button type="button" id="likeWidget" disabled>👍 Like this page</button>
+<span id="metricsStatus" class="note">Community counters pending activation.</span>
+</div>
+</section>
 <section class="hero" id="calculator">
 <div class="card"><div class="eyebrow">ADVENTURER'S LEDGER / GLOBAL EXCHANGE</div><h2>Know the value of <span>your Taney.</span></h2><p class="lede">Compare Taney packs and estimate in-game Rupiah costs using the latest prices you find in player trading listings.</p><div class="controls"><div><label>Display currency</label><select id="currency"></select></div><div><label>Manual USD rate override</label><input id="manual" inputmode="decimal" placeholder="Use live rate"></div></div><div class="status" id="status" style="margin-top:9px">Loading live FX…</div></div>
 <div class="card stats"><div class="stat"><small>BEST PACK · 4,000 TANEY</small><b id="unit">—</b><small>per Taney</small></div><div class="stat"><small>1M IN-GAME RUPIAH</small><b id="oneM">—</b><small>Best saved price per 1M</small></div><div class="stat"><small>5M PLAYER BUNDLE</small><b id="fiveM">—</b><small>Current saved asking price</small></div></div>
